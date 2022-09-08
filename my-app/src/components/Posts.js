@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import Items from './Items'
+import React, { useEffect, useState } from "react";
+import Items from "./Items";
+import "./Posts.css";
+import { getPosts } from "../api/PostsApi";
 
-const Posts = (props)=>{
+const Posts = (props) => {
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    getPosts().then((res) => setArticles(res.posts));
+  }, []);
 
+  return (
+    <div className="container">
+      {articles.length === 0 ? (
+        <div className="divStyle">No Post Available </div>
+      ) : (
+        articles.map((element) => {
+          return (
+            <div className="row" key={element.id}>
+              <Items
+                id={element.id}
+                title={element.title}
+                description={element.description}
+              />
+            </div>
+          );
+        })
+      )}
+    </div>
+  );
+};
 
-  const [articles, setArticles]= useState([])
-
-  const updateNews= async()=>{
-    let url = `${process.env.REACT_APP_API}`
-    let data = await fetch(url)
-    let parsedData = await data.json()
-    setArticles(parsedData.posts)
-  }
-   useEffect(()=>{
-    updateNews();
-   },[]);
-    return (
-      <div className='container '>
-        {console.log(articles)}
-        {articles.map((element)=>{
-           return <div className='row' key={element.id}>
-           <Items id = {element.id} title={element.title} description={element.description} commentsCount={Object.keys(element.comments).length} newsUrl={element.url}/>
-         </div>
-        })}
-
-
-      </div>
-    )
-
-}
-
-export default Posts
+export default Posts;
