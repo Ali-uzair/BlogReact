@@ -8,7 +8,7 @@ import Posts from "./components/Posts";
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div >
         <NavBar />
         <br />
         <Routes>

@@ -6,7 +6,7 @@ const NavBar = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link to="/" className="navbar-brand">
+          <Link to="/" className="navbar-brand" data-testid='link'>
             Posts
           </Link>
         </div>

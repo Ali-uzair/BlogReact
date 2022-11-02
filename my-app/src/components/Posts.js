@@ -10,13 +10,13 @@ const Posts = (props) => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container" data-testid='posts'>
       {articles.length === 0 ? (
         <div className="divStyle">No Post Available </div>
       ) : (
         articles.map((element) => {
           return (
-            <div className="row" key={element.id}>
+            <div className="row" key={element.id} data-testid='item'>
               <Items
                 id={element.id}
                 title={element.title}
