@@ -4,7 +4,7 @@ import "./Show.css";
 import { getPost } from "../api/PostsApi";
 
 const Show = (props) => {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = React.useState([]);
 
   const { id } = useParams();
   useEffect(() => {
@@ -12,13 +12,13 @@ const Show = (props) => {
   }, [id]);
 
   return (
-    <div className="container">
-      {articles.length === 0 ? (
+    <div className="container" data-testid='postdata'>
+      {articles?.length === 0 ? (
         <div className="divStyle">no data found</div>
       ) : (
         <div>
           <div className="titleDiv">
-            <div className="innerDiv">
+            <div className="innerDiv" data-testid='data'>
               <p className="discription">{articles.title}</p>
 
               <p>
@@ -49,7 +49,7 @@ const Show = (props) => {
               <div className="row">
                 <div className="col-md-6 comtDataDiv">
                   <h2 className="subtitle is-5"> Comments</h2>
-                  {articles.comments.map((comment) => {
+                  {articles.comments?.map((comment) => {
                     return (
                       <div key={comment.commentid}>
                         <strong style={{ color: "blue" }}>
@@ -63,7 +63,7 @@ const Show = (props) => {
                 </div>
                 <div className="col-md-6 comtDataDiv">
                   <h3 className="subtitle is-3">Suggestions</h3>
-                  {articles.suggestions.map((suggest) => {
+                  {articles.suggestions?.map((suggest) => {
                     return (
                       <div key={suggest.suggestid}>
                         <strong style={{ color: "blue" }}>
