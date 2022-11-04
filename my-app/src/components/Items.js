@@ -1,6 +1,6 @@
 import React from "react";
 import "./Items.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 const NewsItem = (props) => {
   let { title, description, id } = props;
   return (
