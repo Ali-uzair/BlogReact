@@ -6,7 +6,7 @@ const NewsItem = (props) => {
   return (
     <div>
       <div className="card mb-4 bg-light" data-testid='list'>
-        <div className="card-body" onClick={event => window.location.href=`show/${id}`}>
+        <div className="card-body" data-testid='link' onClick={event => window.location.href=`show/${id}`}>
           {/* <Link to={`show/${id}`}>
             <h5 className="card-title item">{title}</h5>
           </Link> */}

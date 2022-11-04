@@ -2,7 +2,6 @@ import React from "react";
 import Posts from "../components/Posts";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-// import { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { configure } from "enzyme";
 
@@ -18,14 +17,12 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 describe("Posts Component", () => {
-  // Test 1
   test("div avalable in componenet", () => {
     render(<Posts />, { wrapper: BrowserRouter });
     const posts = screen.getByTestId("posts");
     expect(posts).toBeInTheDocument();
   });
 
-  //Test 2
   test("No Post Available sholud be in div", () => {
     render(<Posts />, { wrapper: BrowserRouter });
     const posts = screen.getByTestId("posts");
@@ -76,16 +73,13 @@ describe("Posts Component", () => {
     // // // expect(posts).toBeInTheDocument();
     // // console.log(data);
 
-    // Cache original functionality
     const realUseState = React.useState;
 
-    // Stub the initial state
     const stubInitialState = [
       { id: 1, title: "title", description: "desc" },
       { id: 2, title: "title2", description: "desc 2" },
     ];
 
-    // Mock useState before rendering your component
     jest
       .spyOn(React, "useState")
       .mockImplementationOnce(() => realUseState(stubInitialState));
@@ -93,15 +87,15 @@ describe("Posts Component", () => {
     render(<Posts />, { wrapper: BrowserRouter });
 
     const data = screen.getAllByTestId("item").map((li) => li.textContent);
-    console.log(data);
+    // console.log(data);
     expect(data).toMatchInlineSnapshot(`
     Array [
       "titledesc",
       "title2desc 2",
     ]
     `);
-    const list = screen.getAllByTestId("list")
-    console.log(list)
+    const list = screen.getAllByTestId("list");
+    // console.log(list);
     expect(list).toMatchInlineSnapshot(`
 Array [
   <div
@@ -110,6 +104,7 @@ Array [
   >
     <div
       class="card-body"
+      data-testid="link"
     >
       <h5
         class="card-title item"
@@ -129,6 +124,7 @@ Array [
   >
     <div
       class="card-body"
+      data-testid="link"
     >
       <h5
         class="card-title item"
@@ -143,9 +139,9 @@ Array [
     </div>
   </div>,
 ]
-`)
+`);
 
-  const post = screen.getByTestId('post')
-  expect(post).toBeInTheDocument()
+    const post = screen.getByTestId("post");
+    expect(post).toBeInTheDocument();
   });
 });
