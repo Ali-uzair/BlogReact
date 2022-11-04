@@ -5,11 +5,12 @@ const NewsItem = (props) => {
   let { title, description, id } = props;
   return (
     <div>
-      <div className="card mb-4 bg-light">
-        <div className="card-body">
-          <Link to={`show/${id}`}>
+      <div className="card mb-4 bg-light" data-testid='list'>
+        <div className="card-body" onClick={event => window.location.href=`show/${id}`}>
+          {/* <Link to={`show/${id}`}>
             <h5 className="card-title item">{title}</h5>
-          </Link>
+          </Link> */}
+          <h5 className="card-title item">{title}</h5>
           <p className="card-text">{description}</p>
         </div>
       </div>
